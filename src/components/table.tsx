@@ -13,7 +13,7 @@ export default function Table() {
 		return <div>Error</div>;
 	}
 
-	return (
+	return data.data.length > 0 ? (
 		<table className="min-w-full table-auto">
 			<thead>
 				<tr className="bg-gray-800">
@@ -47,6 +47,8 @@ export default function Table() {
 				))}
 			</tbody>
 		</table>
+	) : (
+		<div className="text-center">No data found</div>
 	);
 }
 
