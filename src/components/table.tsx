@@ -14,19 +14,34 @@ export default function Table() {
 	}
 
 	return (
-		<table>
+		<table className="min-w-full table-auto">
 			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Author</th>
-					<th>Completed?</th>
-					<th>Created At</th>
-					<th>Updated At</th>
-					<th>Actions</th>
+				<tr className="bg-gray-800">
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Name</span>
+					</th>
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Description</span>
+					</th>
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Author</span>
+					</th>
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Is Completed?</span>
+					</th>
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Created At</span>
+					</th>
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Updated At</span>
+					</th>
+					<th className="px-16 py-2">
+						<span className="text-gray-200">Actions</span>
+					</th>
 				</tr>
 			</thead>
-			<tbody>
+
+			<tbody className="bg-gray-200">
 				{data.data.map((task, i) => (
 					<Tr {...task} key={i} />
 				))}
@@ -53,17 +68,25 @@ function Tr({ id, name, description, author, isComplete, createdAt, updatedAt })
 	};
 
 	return (
-		<tr>
-			<td>{name}</td>
-			<td>{description}</td>
-			<td>{author}</td>
+		<tr className="bg-gray-50 text-center">
+			<td className="px-16 py-2">{name}</td>
+			<td className="px-16 py-2">{description}</td>
+			<td className="px-16 py-2">{author}</td>
 			{/* Print Completed if isComplete is true */}
-			<td>{isComplete ? 'Completed' : 'Not Completed'}</td>
-			<td>{createdAt}</td>
-			<td>{updatedAt}</td>
 			<td>
-				<button onClick={onUpdate}>Edit</button>
-				<button onClick={onDelete}>Delete</button>
+				<span className={`${isComplete == true ? 'bg-green-500' : 'bg-rose-500'} text-white px-5 py-1 rounded-full`}>
+					{isComplete == true ? 'Completed' : 'Not Completed'}
+				</span>
+			</td>
+			<td className="px-16 py-2">{createdAt}</td>
+			<td className="px-16 py-2">{updatedAt}</td>
+			<td className="px-16 py-2 flex justify-around gap-5">
+				<button className="cursor" onClick={onUpdate}>
+					Edit
+				</button>
+				<button className="cursor" onClick={onDelete}>
+					Delete
+				</button>
 			</td>
 		</tr>
 	);
